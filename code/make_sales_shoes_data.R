@@ -1,0 +1,5 @@
+source('spark_init.R')
+sales.data <- jsonFile(sqlContext, '/data/input/bob1/sales_data')
+catalog.simple.shoes <- jsonFile(sqlContext, '/data/input/bob1/catalog_simple_shoes_data')
+sales.shoes.data <- join(sales.data, catalog.simple.shoes, sales.data$sku==catalog.simple.shoes$sku_simple)
+write.df(sales.shoes.data, '/data/input/bob1/sales_shoes_data', source='json', mode='overwrite')
