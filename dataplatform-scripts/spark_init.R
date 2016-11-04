@@ -1,0 +1,7 @@
+Sys.setenv(SPARK_HOME='/ext/spark-1.5.1-bin-hadoop2.6/')
+.libPaths(c(file.path(Sys.getenv('SPARK_HOME'), 'R', 'lib'), .libPaths()))
+library(SparkR)
+sc <- sparkR.init()
+sqlContext <- sparkRSQL.init(sc)
+options(echo=TRUE)
+args    <- commandArgs(trailingOnly = TRUE)
